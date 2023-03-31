@@ -1,18 +1,12 @@
 <script setup lang="ts">
 import { ref,watch,onMounted} from 'vue'
-import servicePosts from '../composables/servicePosts';
 import serviceUser from '../composables/serviceUser';
-import serviceComments from '../composables/ServiceComments';
 const props=defineProps<{ id: string }>()
-    let idpost=ref(props.id)
+    let idUser=ref(props.id)
     let listItem:any = ref({})
     onMounted(async () => {
-      let {getOnlyPost} =await servicePosts(idpost.value)
-      const {OnlyUser} = await serviceUser(getOnlyPost.userId)
-      const {getComments} = await serviceComments(idpost.value)
-      getOnlyPost["user"]=OnlyUser.name
-      getOnlyPost["commets"]=getComments
-      listItem.value=getOnlyPost
+      const {OnlyUser} = await serviceUser(idUser.value)
+      listItem.value=OnlyUser
     });
     
 </script>
@@ -29,16 +23,13 @@ const props=defineProps<{ id: string }>()
             #
           </th>
           <th scope="col">
-            Titulo
+            Nombre
           </th>
           <th scope="col">
-            Autor
+            correo
           </th>
           <th scope="col">
-            Contenido
-          </th>
-          <th scope="col">
-            Comentarios
+            Direccion
           </th>
         </tr>
       </thead>
@@ -53,24 +44,19 @@ const props=defineProps<{ id: string }>()
           </td>
           <td col="">
             <p class="">
-              {{ listItem.title }}
+              {{ listItem.name }}
             </p>
           </td>
           <td col="">
-            <a :href="'#/detail-user/'+listItem.userId">
-              <p class="">
-                {{ listItem.user }}
-              </p>
-            </a>
+            <p class="">
+              {{ listItem.email }}
+            </p>
           </td>
           <td col="">
-            <p>{{ listItem.body }}</p>
-          </td>
-          <td col="">
-            <p 
-              v-for="comments in listItem.commets"
-              :key="comments.id">
-              {{ comments.body }}
+            <p>
+              {{ listItem.address.street }}
+              -{{ listItem.address.suite }}
+              -{{ listItem.address.city }}
             </p>
           </td>
         </tr>
