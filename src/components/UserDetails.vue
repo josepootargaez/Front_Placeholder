@@ -14,54 +14,60 @@ const props=defineProps<{ id: string }>()
 <template>
   <div
     v-if="listItem.id"
+    class="container"
   >
-    <table
-      class="table  table-bordered">
-      <thead class="table-dark">
-        <tr>
-          <th scope="2">
-            #
-          </th>
-          <th scope="col">
-            Nombre
-          </th>
-          <th scope="col">
-            correo
-          </th>
-          <th scope="col">
-            Direccion
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td colspan="">
-            <div :class="`${listItem.id}`">
-              <p>
-                {{ listItem.id }}
+    <div class="tableContainer">
+      <h1 class="text-center mt-4">
+        Detalle de Usuario : {{ listItem.name }}
+      </h1>
+      <table
+        class="table  table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th scope="2">
+              #
+            </th>
+            <th scope="col">
+              Nombre
+            </th>
+            <th scope="col">
+              correo
+            </th>
+            <th scope="col">
+              Direccion
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="">
+              <div :class="`${listItem.id}`">
+                <p>
+                  {{ listItem.id }}
+                </p>
+              </div>
+            </td>
+            <td col="">
+              <p class="">
+                {{ listItem.name }}
               </p>
-            </div>
-          </td>
-          <td col="">
-            <p class="">
-              {{ listItem.name }}
-            </p>
-          </td>
-          <td col="">
-            <p class="">
-              {{ listItem.email }}
-            </p>
-          </td>
-          <td col="">
-            <p>
-              {{ listItem.address.street }}
-              -{{ listItem.address.suite }}
-              -{{ listItem.address.city }}
-            </p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            </td>
+            <td col="">
+              <p class="">
+                {{ listItem.email }}
+              </p>
+            </td>
+            <td col="">
+              <p>
+                {{ listItem.address.street }}
+                -{{ listItem.address.suite }}
+                -{{ listItem.address.city }}
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <a href="#/">Regresar</a>
   </div>
 </template>

@@ -33,7 +33,7 @@ const vLength = {
 <template>
   <div
     v-if="list.length>0"
-    class="container "
+    class="container mt-4"
   > 
     <h1 class="text-center">
       Lista de Posts

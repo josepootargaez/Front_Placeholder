@@ -87,7 +87,8 @@ const props=defineProps<{ id: string }>()
   </div>
 </template>
 
-<style scoped>.tableContainer {
+<style scoped>
+.tableContainer {
   height: 300px;
   overflow: auto;
 }
