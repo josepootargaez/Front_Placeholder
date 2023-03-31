@@ -32,7 +32,8 @@ const props=defineProps<{ id: string }>()
         Detalle de Usuario : {{ listItem.name }}
       </h1>
       <table
-        class="table  table-bordered">
+        class="table  table-bordered"
+      >
         <thead class="table-dark">
           <tr>
             <th scope="2">
