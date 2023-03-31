@@ -21,6 +21,13 @@ watch(listPost,()=>{
     })
     return list;
 })
+const vLength = {
+      beforeMount: (el:any,val:any) => {
+        list.value.map((res:any,index:any)=>{
+          list.value[index].title=list.value[index].title.substring(0,val.value)
+        })
+      }
+}
 </script>
 
 <template>
@@ -56,7 +63,7 @@ watch(listPost,()=>{
         </td>
         <td col="2">
           <a :href="'#/post-item/'+item.idpost">
-            <p class="">
+            <p v-length="50">
               {{ item.title }}
             </p>
           </a>

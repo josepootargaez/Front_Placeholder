@@ -14,7 +14,7 @@ const props=defineProps<{ id: string }>()
       getOnlyPost["commets"]=getComments
       listItem.value=getOnlyPost
     });
-    
+
 </script>
 
 <template>
