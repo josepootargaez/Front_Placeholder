@@ -14,6 +14,7 @@ Project about vue 3 and compositionAPI
      git clone https://github.com/josepootargaez/Front_Placeholder
 ## Run project
 
+Run `npm install` 
 Run `npm run dev` 
 
 
