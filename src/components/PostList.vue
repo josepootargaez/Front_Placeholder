@@ -6,11 +6,15 @@ let listPost:any=ref();
 let  listUsers:any=ref();
 let  list:any=ref([]);
   onMounted(async () => {
+      await getList();
+    });
+    async function getList(){
       const {getPosts} =await servicePosts()
       const {getUsers} =await serviceUser()
       listUsers.value=getUsers
       listPost.value=getPosts
-    });
+    }
+
 watch(listPost,()=>{
         listPost.value.map((post:any)=>{
       return listUsers.value.map((user:any)=>{

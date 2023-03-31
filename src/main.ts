@@ -6,6 +6,5 @@ import "bootstrap/dist/js/bootstrap.min";
 
 import App from './App.vue'
 import router from "./routes/routes"
-// import PostList from '../PostList.vue';
 
 createApp(App).use(router).mount('#app')

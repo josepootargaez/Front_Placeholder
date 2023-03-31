@@ -1,19 +1,32 @@
 <script setup lang="ts">
-import { ref,watch,onMounted} from 'vue'
+import { ref, watch, onMounted, computed } from 'vue';
 import servicePosts from '../composables/servicePosts';
 import serviceUser from '../composables/serviceUser';
 import serviceComments from '../composables/ServiceComments';
+import { useRoute } from "vue-router";
+const route = useRoute();
 const props=defineProps<{ id: string }>()
     let idpost=ref(props.id)
     let listItem:any = ref({})
-    onMounted(async () => {
+    async function getList(){
       let {getOnlyPost} =await servicePosts(idpost.value)
       const {OnlyUser} = await serviceUser(getOnlyPost.userId)
       const {getComments} = await serviceComments(idpost.value)
       getOnlyPost["user"]=OnlyUser.name
       getOnlyPost["commets"]=getComments
-      listItem.value=getOnlyPost
+      return listItem.value=getOnlyPost
+    }
+    onMounted(async () => {
+      await getList();
     });
+    watch(
+      () => route.fullPath,
+      async () => {
+        idpost.value=route.params.id.toString()
+        getList();
+      }
+    );
+    
 
 </script>
 

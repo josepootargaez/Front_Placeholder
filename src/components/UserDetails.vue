@@ -1,14 +1,25 @@
 <script setup lang="ts">
 import { ref,watch,onMounted} from 'vue'
 import serviceUser from '../composables/serviceUser';
-
+import { useRoute } from "vue-router";
+const route = useRoute();
 const props=defineProps<{ id: string }>()
     let idUser=ref(props.id)
     let listItem:any = ref({})
-    onMounted(async () => {
+   async function getList(){
       const {OnlyUser} = await serviceUser(idUser.value)
       listItem.value=OnlyUser
+    }
+    onMounted(async () => {
+    await getList()
     });
+    watch(
+      () => route.fullPath,
+      async () => {
+        idUser.value=route.params.id.toString()
+        getList();
+      }
+    );
 </script>
 
 <template>
