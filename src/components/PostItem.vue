@@ -20,70 +20,81 @@ const props=defineProps<{ id: string }>()
 <template>
   <div
     v-if="listItem.id"
+    class=" container mt-4"
   >
-    <table
-      class="table  table-bordered">
-      <thead class="table-dark">
-        <tr>
-          <th scope="2">
-            #
-          </th>
-          <th scope="col">
-            Titulo
-          </th>
-          <th scope="col">
-            Autor
-          </th>
-          <th scope="col">
-            Contenido
-          </th>
-          <th scope="col">
-            Comentarios
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td colspan="">
-            <div :class="`${listItem.id}`">
-              <p>
-                {{ listItem.id }}
-              </p>
-            </div>
-          </td>
-          <td col="">
-            <p class="">
-              {{ listItem.title }}
-            </p>
-          </td>
-          <td col="">
-            <a :href="'#/detail-user/'+listItem.userId">
+    <h1 :class="'text-center'">
+      Post #{{ idpost }}
+    </h1>
+    <div class="tableContainer">
+      <table
+        class="table  table-bordered"
+      >
+        <thead class="table-dark">
+          <tr>
+            <th scope="2">
+              #
+            </th>
+            <th scope="col">
+              Titulo
+            </th>
+            <th scope="col">
+              Autor
+            </th>
+            <th scope="col">
+              Contenido
+            </th>
+            <th scope="col">
+              Comentarios
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="">
+              <div :class="`${listItem.id}`">
+                <p>
+                  {{ listItem.id }}
+                </p>
+              </div>
+            </td>
+            <td col="">
               <p class="">
-                {{ listItem.user }}
+                {{ listItem.title }}
               </p>
-            </a>
-          </td>
-          <td col="">
-            <p>{{ listItem.body }}</p>
-          </td>
-          <td col="">
-            <p 
-              v-for="comments in listItem.commets"
-              :key="comments.id">
-              {{ comments.body }}
-            </p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            </td>
+            <td col="">
+              <a :href="'#/detail-user/'+listItem.userId">
+                <p class="">
+                  {{ listItem.user }}
+                </p>
+              </a>
+            </td>
+            <td col="">
+              <p>{{ listItem.body }}</p>
+            </td>
+            <td col="">
+              <p 
+                v-for="comments in listItem.commets"
+                :key="comments.id">
+                {{ comments.body }}
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <a href="#/">Regresar</a>
   </div>
 </template>
 
-<style scoped>
-.read-the-docs {
-  color: #888;
+<style scoped>.tableContainer {
+  height: 300px;
+  overflow: auto;
 }
-
+.table {
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
 
 </style>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref,watch,onMounted} from 'vue'
 import serviceUser from '../composables/serviceUser';
+
 const props=defineProps<{ id: string }>()
     let idUser=ref(props.id)
     let listItem:any = ref({})
@@ -8,7 +9,6 @@ const props=defineProps<{ id: string }>()
       const {OnlyUser} = await serviceUser(idUser.value)
       listItem.value=OnlyUser
     });
-    
 </script>
 
 <template>
@@ -71,5 +71,14 @@ const props=defineProps<{ id: string }>()
   color: #888;
 }
 
+.tableContainer {
+    height: 300px;
+    overflow: auto;
+}
+.table {
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
 
 </style>
